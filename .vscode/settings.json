@@ -1,0 +1,7 @@
+{
+    "window.zoomLevel": 1,
+    "editor.fontSize": 10,
+    "terminal.integrated.fontFamily": "Apple Symbols"
+    "workbench.colorTheme": "Dark Modern"
+    "workbench.iconTheme": "vscode-icons"
+}

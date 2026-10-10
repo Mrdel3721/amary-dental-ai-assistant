@@ -1,0 +1,387 @@
+
+/* =========================
+AI Chat UI
+========================= */
+
+:root {
+  --background: #f5f5f7;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --secondary: #86868b;
+  --blue: #007aff;
+  --border: rgba(0, 0, 0, 0.07);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top left, #ffffff 0, transparent 45%),
+    var(--background);
+  color: var(--text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+/* Main application */
+
+.app-container {
+  width: 100%;
+  max-width: 920px;
+  height: min(850px, calc(100vh - 48px));
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.07),
+    0 2px 8px rgba(0, 0, 0, 0.025);
+}
+
+/* Header */
+
+.app-header {
+  min-height: 88px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.brand-icon,
+.welcome-icon {
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(145deg, #50a7ff, #0066e8);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+  font-size: 25px;
+}
+
+.brand h1 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.brand p {
+  margin-top: 5px;
+  color: var(--secondary);
+  font-size: 12px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #30c759;
+}
+
+.header-badge {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: #55555a;
+  background: #fafafa;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Chat area */
+
+.chat-box {
+  flex: 1;
+  min-height: 0;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: #d8d8dc;
+  border-radius: 10px;
+}
+
+/* Welcome message */
+
+.welcome {
+  margin: auto;
+  max-width: 400px;
+  padding: 30px 10px;
+  text-align: center;
+}
+
+.welcome-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 22px;
+  border-radius: 20px;
+  font-size: 32px;
+}
+
+.welcome h2 {
+  font-size: clamp(22px, 3vw, 29px);
+  line-height: 1.3;
+  letter-spacing: -1px;
+  font-weight: 600;
+}
+
+.welcome p {
+  margin-top: 12px;
+  color: var(--secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Individual message rows */
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  max-width: 78%;
+  animation: appear 0.22s ease-out;
+}
+
+.user-message {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.bot-message {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.message-label {
+  margin: 0 8px 7px;
+  color: var(--secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Message bubbles */
+
+.message-bubble {
+  padding: 14px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.user-message .message-bubble {
+  color: white;
+  background: var(--blue);
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 122, 255, 0.12);
+}
+
+.bot-message .message-bubble {
+  color: #252528;
+  background: #f0f0f3;
+  border: 1px solid rgba(0, 0, 0, 0.025);
+  border-bottom-left-radius: 6px;
+}
+
+/* Input footer */
+
+.chat-footer {
+  padding: 18px 28px 20px;
+  background: rgba(255, 255, 255, 0.94);
+  border-top: 1px solid var(--border);
+}
+
+.chat-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 9px 8px 20px;
+  border: 1px solid #e3e3e8;
+  border-radius: 22px;
+  background: #f9f9fb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-form:focus-within {
+  border-color: rgba(0, 122, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.08);
+}
+
+.chat-form input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.chat-form input::placeholder {
+  color: #a1a1a8;
+}
+
+.chat-form button {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  background: var(--blue);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.chat-form button:hover {
+  background: #0066d6;
+  transform: scale(1.04);
+}
+
+.chat-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.chat-form button svg {
+  width: 21px;
+  height: 21px;
+}
+
+.footer-note {
+  margin-top: 12px;
+  color: #98989e;
+  font-size: 10px;
+  text-align: center;
+}
+
+/* Animation */
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+  }
+
+  .app-container {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  .app-header {
+    min-height: 76px;
+    padding: 15px 18px;
+  }
+
+  .chat-box {
+    padding: 22px 16px;
+    gap: 18px;
+  }
+
+  .chat-message {
+    max-width: 88%;
+  }
+
+  .message-bubble {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+
+  .chat-footer {
+    padding: 14px 14px calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .header-badge {
+    font-size: 11px;
+    padding: 7px 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Ikon gigi pada branding */
+.brand-icon img,
+.welcome-icon img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Background ikon brand */
+.brand-icon {
+  background: linear-gradient(145deg, #50a7ff, #0066e8);
+  overflow: hidden;
+}
+
+/* Background ikon welcome */
+.welcome-icon {
+  background: linear-gradient(145deg, #50a7ff, #0066e8);
+  overflow: hidden;
+}

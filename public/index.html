@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Gemini AI Assistant</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <main class="app-container">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        
+<div class="brand-icon">
+  <img
+    src="images/tooth.png"
+    alt="Ikon gigi Amary Dental"
+  />
+</div>
+        <div>
+          <h1>AI Assistant klinik Amary
+          </h1>
+          <p><span class="status-dot"></span> Powered by Gemini</p>
+        </div>
+      </div>
+
+      <div class="header-badge">AI Chat</div>
+    </header>
+
+    <!-- Chat Area -->
+    <section id="chat-box" class="chat-box" aria-live="polite">
+      <div class="welcome">
+        
+<div class="welcome-icon">
+  <img
+    src="images/tooth.png"
+    alt="Ikon gigi"
+  />
+</div>
+    
+        <h2>Bagaimana saya bisa membantu?</h2>
+        <p>Mulai percakapan dan konsultasikan masalah gigi kamu bersama AI Assistant Klinik Amary.</p>
+      </div>
+    </section>
+
+    <!-- Input Area -->
+    <footer class="chat-footer">
+      <form id="chat-form" class="chat-form">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Tanyakan apa saja..."
+          autocomplete="off"
+          required
+        />
+
+        <button type="submit" aria-label="Kirim pesan">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <p class="footer-note">
+        AI dapat membuat kesalahan. Periksa kembali informasi penting.
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
